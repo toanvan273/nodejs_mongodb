@@ -4,6 +4,8 @@ import {usersRouter, studentsRouter} from './routes/index.js'
 dotenv.config() // must have
 const app = express();
 const PORT = process.env.PORT || 3002;
+
+app.use(express.json())
 // routers
 app.use('/users', usersRouter)
 app.use('/students', studentsRouter)

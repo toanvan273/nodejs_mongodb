@@ -1,20 +1,13 @@
 import express from 'express'
+import { studentController } from '../controllers/index.js'
+
 const router = express.Router();
 
-router.get('/',(req,res) => {
-    res.send('GET student')
-})
+router.get('/',studentController.getAllStudents)
 // get student by ID
-router.get('/:id',(req,res) => {
-    // debugger
-    res.send('get student by ID:' + req?.params?.id ?? "")
-})
+router.get('/:id',studentController.getStudentByID)
 // put or patch
-router.patch('/',(req,res) => {
-    res.send('patch(new user of not exit) insert student')
-})
-router.post('/',(req,res) => {
-    res.send('post insert student')
-})
+router.patch('/',studentController.updateStudent)
+router.post('/',studentController.insertStudent)
 
 export default router
