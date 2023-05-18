@@ -2,6 +2,7 @@ import express from 'express'
 import * as dotenv from 'dotenv'
 import {usersRouter, studentsRouter} from './routes/index.js'
 dotenv.config() // must have
+import connect from './database/database.js'
 const app = express();
 const PORT = process.env.PORT || 3002;
 
@@ -14,6 +15,7 @@ app.get('/', (req,res) => {
     res.send('Hello Nodejs 2023')
 })
 
-app.listen(PORT, () => {
+app.listen(PORT,async () => {
+    await connect()
     console.log(`listening port: ${PORT}`)
 })

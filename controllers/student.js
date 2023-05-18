@@ -1,6 +1,21 @@
 
+
+
 async function getAllStudents(req, res) {
-    res.send('getAllStudents')
+    // res.send('getAllStudents')
+   
+    res.status(200).json({
+        message:'Get students successfully',
+        data: [
+            {
+                name: 'Nguyen Van A',
+                age: 19
+            }
+        ]
+    })
+    // res.status(500).json({
+    //     message: 'Can not get students'
+    // })
 }
 
 async function getStudentByID(req, res){
