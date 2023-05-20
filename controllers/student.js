@@ -1,10 +1,11 @@
+import HttpStatusCode from "../exceptions/HttpStatusCode.js"
 
 
 
 async function getAllStudents(req, res) {
     // res.send('getAllStudents')
    
-    res.status(200).json({
+    res.status(HttpStatusCode.OK).json({
         message:'Get students successfully',
         data: [
             {
@@ -13,7 +14,7 @@ async function getAllStudents(req, res) {
             }
         ]
     })
-    // res.status(500).json({
+    // res.status(HttpStatusCode.INTERNAL_SERVER_ERROR).json({
     //     message: 'Can not get students'
     // })
 }

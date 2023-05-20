@@ -1,19 +1,22 @@
 import mongoose from "mongoose";
+import { OutputType, print } from "../helpers/print.js";
+import Exception from "../exceptions/Exception.js";
+
 mongoose.set('strictQuery', true)
 const connect = async () => {
     try {
         const connection = await mongoose.connect(process.env.MONGO_URI);
-        console.log('connection success')
+        print('Connection Mongoose successfully', OutputType.SUCCESS)
+        // console.log()
     } catch (error) {
-        console.log(error);
         const {code} = error;
         if(code == 8000){
-            throw new Error('Wrong username and password')
+            throw new Exception(Exception.WRONG_DB_USERNAME_PASSWORD)
         }
         if(code == 'ENODATA'){
-            throw new Error('Wrong server name/connnection string')
+            throw new Exception(Exception.WRONG_CONNECTION_STRING)
         }
-        throw new Error("Can not connect to MongoDB")
+        throw new Exception(Exception.CANNOT_CONNECT_MONGODB)
     }
 }
 

@@ -1,7 +1,9 @@
-
+import Exception from "../exceptions/Exception.js"
+import { OutputType, print } from "../helpers/print.js"
+import {User} from '../models/index.js'
 
 const login = async ({email, password}) => {
-    console.log('login user in user repository')
+    print('login user in user repository', OutputType.INFORMATION)
 }
 const register = async ({
     email, 
@@ -11,6 +13,15 @@ const register = async ({
     address
 }) => {
     // validation already done
+    try {
+        let exitingUser = User.findOne({email}).exec()
+        if(!!exitingUser){
+            throw new Exception(Exception.USER_EXIT)
+        }
+        //encrypt password
+    } catch (error) {
+        
+    }
     console.log('Register user in user repository', 
     email, 
     password,
