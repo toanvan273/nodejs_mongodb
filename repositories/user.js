@@ -15,7 +15,10 @@ const login = async ({email, password}) => {
         const token = jwt.sign(
                 {data: exitingUser}, 
                 process.env.JWT_SECRET,
-                {expiresIn: '10 days'} // expiresIn: '60'
+                {
+                    // expiresIn: '60'
+                    expiresIn: '10 days'
+                } 
             )
 
             // clone User add more property token
@@ -54,7 +57,6 @@ const register = async ({
         phoneNumber,
         address
     })
-    console.log('Check', newUser, newUser.toString())
     return {
         ...newUser._doc,
         password: '***'
