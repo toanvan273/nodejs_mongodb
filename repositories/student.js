@@ -31,8 +31,10 @@ const insertStudent = async ({
         // return student
     } catch (error) {
         // debugger
-        console.log(error);
-        throw new Exception(error.message)
+        if(!!error.errors){
+            throw new Exception('Input error', error.errors)
+        }
+        
     }
 }
 

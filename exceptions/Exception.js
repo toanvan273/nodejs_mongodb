@@ -7,8 +7,10 @@ export default class Exception extends Error {
     static USER_EXIT = "User already exits" 
     static CANNOT_REGISTER_USER = "Cannot register user"
     static WRONG_EMAIL_AND_PASSWORD = 'Wrong email or password'
-    constructor(message){
+    constructor(message, validationErrors={}){
+        // super(`${message} ${Object.keys(validationErrors).length>0?JSON.stringify(validationErrors):''}`) // call constructor of parent class (Error)
         super(message) // call constructor of parent class (Error)
         print(message, OutputType.ERROR)
+        this.validationErrors = validationErrors
     }
 }
